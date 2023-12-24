@@ -1,14 +1,19 @@
 import axios, { AxiosResponse } from "axios";
 import { SpreadDataEntry } from "../types";
 
+const test1 = process.env.BASE_URL;
+console.log("tests, ", test1);
+
 const axiosInstance = axios.create({
-  baseURL:
-    "https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD",
+  baseURL: process.env.BASE_URL,
 });
 
-export const fetchPrices = async (): Promise<SpreadDataEntry[]> => {
+export const fetchPrices = async (
+  currency: string,
+): Promise<SpreadDataEntry[]> => {
+  const URLparams = `/${currency}`;
   const response: AxiosResponse<SpreadDataEntry[]> =
-    await axiosInstance.get("");
+    await axiosInstance.get(URLparams);
 
   return response.data;
 };

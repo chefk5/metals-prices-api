@@ -8,18 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGoldPrices = void 0;
-const priceService_1 = require("../services/priceService");
-const getGoldPrices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const fetchedGoldPrices = yield (0, priceService_1.fetchPrices)();
-        console.log("🚀 ~ file: priceController.ts:7 ~ getGoldPrices ~ fetchedGoldPrices:", fetchedGoldPrices);
-        res.json({ fetchedGoldPrices });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "error in fethcing gold prices" });
-    }
+exports.fetchPrices = void 0;
+const axios_1 = __importDefault(require("axios"));
+const test1 = process.env.BASE_URL;
+console.log("tests, ", test1);
+const axiosInstance = axios_1.default.create({
+    baseURL: process.env.BASE_URL,
 });
-exports.getGoldPrices = getGoldPrices;
+const fetchPrices = (currency) => __awaiter(void 0, void 0, void 0, function* () {
+    const URLparams = `/${currency}`;
+    const response = yield axiosInstance.get(URLparams);
+    return response.data;
+});
+exports.fetchPrices = fetchPrices;

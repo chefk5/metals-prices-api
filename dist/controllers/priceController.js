@@ -8,17 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchPrices = void 0;
-const axios_1 = __importDefault(require("axios"));
-const axiosInstance = axios_1.default.create({
-    baseURL: "https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD",
+exports.getGoldPrices = void 0;
+const priceService_1 = require("../services/priceService");
+const getGoldPrices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fetchedGoldPrices = yield (0, priceService_1.fetchPrices)(req.params.currency);
+        res.json({ fetchedGoldPrices });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "error in fetching gold prices" });
+    }
 });
-const fetchPrices = () => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield axiosInstance.get("");
-    return response.data;
-});
-exports.fetchPrices = fetchPrices;
+exports.getGoldPrices = getGoldPrices;

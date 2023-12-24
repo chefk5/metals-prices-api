@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export type goldToBeCalculated = {
   purchasePrice: number;
   coinWeightInGrams: number;
@@ -32,3 +34,10 @@ export type SpreadDataEntry = {
 };
 
 // export type SpreadDataArray = SpreadDataEntry[];
+
+// Define a custom type for requests with a currency parameter
+export interface CurrencyRequest extends Request {
+  params: {
+    currency: string;
+  };
+}

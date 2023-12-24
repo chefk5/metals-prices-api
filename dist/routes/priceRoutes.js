@@ -7,5 +7,5 @@ const express_1 = __importDefault(require("express"));
 const priceController_1 = require("../controllers/priceController");
 const priceRouter = express_1.default.Router();
 // Define routes
-priceRouter.get("/gold", priceController_1.getGoldPrices);
+priceRouter.get("/gold/:currency", priceController_1.getGoldPrices);
 exports.default = priceRouter;
