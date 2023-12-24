@@ -33,8 +33,6 @@ export type SpreadDataEntry = {
   ts: number;
 };
 
-// export type SpreadDataArray = SpreadDataEntry[];
-
 // Define a custom type for requests with a currency parameter
 export interface CurrencyRequest extends Request {
   params: {

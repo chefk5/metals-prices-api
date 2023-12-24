@@ -1,9 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { SpreadDataEntry } from "../types";
 
-const test1 = process.env.BASE_URL;
-console.log("tests, ", test1);
-
 const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL,
 });

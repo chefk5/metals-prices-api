@@ -11,10 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGoldPrices = void 0;
 const priceService_1 = require("../services/priceService");
+const utils_1 = require("../utils");
 const getGoldPrices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const fetchedGoldPrices = yield (0, priceService_1.fetchPrices)(req.params.currency);
-        res.json({ fetchedGoldPrices });
+        const apiGoldPrices = yield (0, priceService_1.fetchPrices)(req.params.currency);
+        const goldPrice = (0, utils_1.getLatestGoldPrice)(apiGoldPrices);
+        if (!goldPrice) {
+            throw new Error("Failed to fetch prices from the API");
+        }
+        res.json({ goldPrice: goldPrice });
     }
     catch (error) {
         console.error(error);

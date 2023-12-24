@@ -9,8 +9,7 @@ dotenv_1.default.config();
 const priceRoutes_1 = __importDefault(require("./routes/priceRoutes"));
 const app = (0, express_1.default)();
 const port = process.env.PORT;
-console.log("🚀 ~ file: index.ts:9 ~ port:", port);
 app.use("/v1/prices/", priceRoutes_1.default);
 app.listen(port, () => {
-    console.log("lsitenifn ", port);
+    console.log("listening ", port);
 });

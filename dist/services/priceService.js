@@ -14,8 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fetchPrices = void 0;
 const axios_1 = __importDefault(require("axios"));
-const test1 = process.env.BASE_URL;
-console.log("tests, ", test1);
 const axiosInstance = axios_1.default.create({
     baseURL: process.env.BASE_URL,
 });
